@@ -56,11 +56,11 @@ const Values = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="bg-card rounded-2xl p-8 h-full border border-border hover:border-accent/50 transition-all duration-300 hover:shadow-glow">
-                <div className="bg-gradient-to-br from-accent/20 to-accent/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <value.icon className="h-8 w-8 text-accent" />
+              <div className="bg-card rounded-2xl p-8 h-full border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow">
+                <div className="bg-gradient-to-br from-primary/20 to-primary/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <value.icon className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
+                <h3 className="text-xl font-bold mb-3 transition-colors">
                   {value.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">

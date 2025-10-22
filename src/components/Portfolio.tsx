@@ -99,8 +99,8 @@ const Portfolio = () => {
                 onClick={() => setFilter(category)}
                 className={`px-6 py-2 rounded-full font-medium transition-all ${
                   filter === category
-                    ? "bg-accent text-white shadow-glow"
-                    : "bg-card text-foreground hover:bg-accent/10 border border-border"
+                    ? "bg-primary text-white shadow-glow"
+                    : "bg-card text-foreground hover:bg-primary/10 border border-border"
                 }`}
               >
                 {category}
@@ -118,18 +118,18 @@ const Portfolio = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => setSelectedProject(index)}
             >
-              <Card className="group cursor-pointer h-full p-6 rounded-2xl border-2 border-border hover:border-accent/50 transition-all duration-300 hover:shadow-glow">
+              <Card className="group cursor-pointer h-full p-6 rounded-2xl border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow">
                 <div className="text-6xl mb-4">{project.image}</div>
-                <Badge className="mb-3 bg-accent/10 text-accent hover:bg-accent/20">
+                <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
                   {project.category}
                 </Badge>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
+                <h3 className="text-xl font-bold mb-3 transition-colors">
                   {project.title}
                 </h3>
                 <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                   {project.description}
                 </p>
-                <div className="flex items-center text-accent text-sm font-medium group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center text-primary text-sm font-medium group-hover:translate-x-1 transition-transform">
                   View Details
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </div>
@@ -158,7 +158,7 @@ const Portfolio = () => {
                   <ul className="space-y-2">
                     {projects[selectedProject].results.map((result, idx) => (
                       <li key={idx} className="flex items-start">
-                        <span className="text-accent mr-2">✓</span>
+                        <span className="text-primary mr-2">✓</span>
                         <span>{result}</span>
                       </li>
                     ))}

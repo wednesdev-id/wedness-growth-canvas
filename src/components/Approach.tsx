@@ -11,25 +11,25 @@ const Approach = () => {
     {
       icon: Search,
       number: "01",
-      title: "Analisis",
+      title: "Analisis Risiko & Kebutuhan",
       description: "Deep dive ke dalam sistem Anda untuk memahami konteks bisnis, identifikasi bottleneck, dan mapping potensi risiko."
     },
     {
       icon: AlertTriangle,
       number: "02",
-      title: "Mitigasi",
+      title: "Rencana & Mitigasi Masalah",
       description: "Rancang strategi penyelesaian masalah yang tepat sasaran dengan meminimalkan disruption pada operasional bisnis."
     },
     {
       icon: Settings,
       number: "03",
-      title: "Optimasi",
+      title: "Pembuatan & Implementasi Sistem",
       description: "Implementasi solusi dan fine-tuning sistem untuk mencapai performa optimal yang mendukung skalabilitas."
     },
     {
       icon: Rocket,
       number: "04",
-      title: "Growth",
+      title: "Optimasi & Monitoring Dampak",
       description: "Monitoring berkelanjutan dan iterasi untuk memastikan sistem terus berkembang sejalan dengan pertumbuhan bisnis."
     }
   ];
@@ -52,7 +52,7 @@ const Approach = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Pendekatan <span className="text-gradient">Sistematis</span>
+            <span className="text-gradient">Langkah Kami</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Metodologi terstruktur untuk memastikan setiap proyek mencapai hasil yang terukur
@@ -73,15 +73,15 @@ const Approach = () => {
                 className="relative"
               >
                 {/* Step Card */}
-                <div className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-border relative z-10">
+                <div className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-primary/20 hover:border-primary/50 relative z-10">
                   {/* Number Badge */}
-                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-accent to-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                  <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {step.number}
                   </div>
 
                   {/* Icon */}
-                  <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mt-4">
-                    <step.icon className="h-8 w-8 text-accent" />
+                  <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mt-4">
+                    <step.icon className="h-8 w-8 text-primary" />
                   </div>
 
                   {/* Content */}

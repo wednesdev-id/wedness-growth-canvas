@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Shield, Wrench, Zap } from "lucide-react";
+import { Settings, Workflow, Database, Users } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const Services = () => {
@@ -10,40 +10,52 @@ const Services = () => {
 
   const services = [
     {
-      icon: Shield,
-      title: "Analisis Risiko",
-      description: "Identifikasi potensi ancaman dan celah dalam sistem Anda sebelum menjadi masalah besar.",
+      icon: Settings,
+      title: "Sistem Bisnis Kustom",
+      description: "Pembuatan sistem yang disesuaikan dengan kebutuhan spesifik bisnis Anda untuk meningkatkan efisiensi operasional.",
       features: [
-        "Security Assessment",
-        "Performance Audit",
-        "Infrastructure Review",
-        "Risk Mapping"
+        "Custom Software Development",
+        "Business Process Automation",
+        "System Integration",
+        "API Development"
       ],
       color: "from-blue-500 to-cyan-500"
     },
     {
-      icon: Wrench,
-      title: "Mitigasi Masalah",
-      description: "Solusi tepat sasaran untuk mengatasi bottleneck dan meningkatkan reliabilitas sistem.",
+      icon: Workflow,
+      title: "Optimasi Alur Kerja & Operasional",
+      description: "Analisis dan perbaikan proses bisnis untuk menghilangkan bottleneck dan meningkatkan produktivitas.",
       features: [
-        "Bug Resolution",
-        "System Debugging",
-        "Architecture Refactoring",
-        "Technical Debt Reduction"
+        "Process Analysis",
+        "Workflow Optimization",
+        "Performance Monitoring",
+        "Efficiency Enhancement"
       ],
-      color: "from-accent to-orange-500"
+      color: "from-accent to-green-600"
     },
     {
-      icon: Zap,
-      title: "Optimasi Sistem",
-      description: "Maksimalkan performa dan efisiensi sistem untuk mendukung pertumbuhan bisnis yang berkelanjutan.",
+      icon: Database,
+      title: "Integrasi Teknologi dan Data",
+      description: "Menghubungkan berbagai sistem dan platform untuk menciptakan ekosistem teknologi yang terintegrasi.",
       features: [
-        "Performance Tuning",
-        "Database Optimization",
-        "API Enhancement",
-        "Scalability Planning"
+        "System Integration",
+        "Data Migration",
+        "API Integration",
+        "Cloud Solutions"
       ],
-      color: "from-green-500 to-emerald-500"
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      icon: Users,
+      title: "Konsultasi & Pendampingan Digital Transformation",
+      description: "Bimbingan strategis untuk transformasi digital yang berkelanjutan dan berorientasi pada hasil bisnis.",
+      features: [
+        "Digital Strategy",
+        "Technology Consulting",
+        "Change Management",
+        "Training & Support"
+      ],
+      color: "from-orange-500 to-red-500"
     }
   ];
 
@@ -57,14 +69,14 @@ const Services = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Layanan <span className="text-gradient">Unggulan</span>
+            <span className="text-gradient">Solusi Kami</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Tiga pilar utama yang kami tawarkan untuk memastikan sistem Anda siap berkembang
+            Empat pilar utama yang kami tawarkan untuk memastikan sistem Anda siap berkembang
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -72,7 +84,7 @@ const Services = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
             >
-              <Card className="group relative h-full p-8 border-2 border-border hover:border-accent/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-glow cursor-pointer">
+              <Card className="group relative h-full p-8 border-2 border-border hover:border-primary/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-glow cursor-pointer">
                 {/* Gradient Background on Hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
                 
@@ -83,7 +95,7 @@ const Services = () => {
                   </div>
 
                   {/* Title & Description */}
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-accent transition-colors">
+                  <h3 className="text-2xl font-bold mb-4 transition-colors">
                     {service.title}
                   </h3>
                   <p className="text-muted-foreground mb-6 leading-relaxed">

@@ -47,9 +47,9 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Your Growth Partner in{" "}
-              <span className="text-gradient bg-gradient-to-r from-accent to-orange-400 bg-clip-text text-transparent">
-                System & Strategy
+              Grow Your Business with{" "}
+              <span className="text-gradient bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
+                Impact-Driven System Solutions
               </span>
             </h1>
           </motion.div>
@@ -60,7 +60,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
           >
-            We Build Impactful Systems for Business Growth through strategic risk analysis, problem mitigation, and system optimization.
+            Kami bantu bisnis Anda berkembang melalui analisis, optimasi, dan sistem yang berdampak nyata.
           </motion.p>
 
           <motion.div
@@ -72,9 +72,9 @@ const Hero = () => {
             <Button
               size="lg"
               onClick={handleConsultation}
-              className="bg-accent hover:bg-accent/90 text-white font-semibold px-8 py-6 text-lg rounded-2xl btn-glow group"
+              className="bg-accent hover:bg-[hsl(var(--accent-hover))] text-white font-semibold px-8 py-6 text-lg rounded-2xl btn-glow group"
             >
-              Konsultasikan Bisnismu Sekarang
+              Konsultasi Sekarang
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
 

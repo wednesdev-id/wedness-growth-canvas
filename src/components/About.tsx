@@ -35,12 +35,12 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Tentang <span className="text-gradient">Wedness Dev</span>
+            Tentang <span className="text-gradient">WednesDev</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Kami adalah agency teknologi yang fokus pada pendampingan solusi dan pembuatan sistem 
-            yang membantu perusahaan mencapai pertumbuhan signifikan. Bukan sekadar vendor, 
-            kami adalah <span className="font-semibold text-foreground">growth partner</span> Anda.
+            WednesDev adalah agensi yang berfokus pada pendampingan solusi dan pembuatan sistem 
+            untuk membantu perusahaan tumbuh secara signifikan. Fokus utama kami adalah analisis risiko, 
+            mitigasi masalah, dan optimasi sistem yang berorientasi pada impact terhadap bisnis.
           </p>
         </motion.div>
 
@@ -51,10 +51,10 @@ const About = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-border"
+              className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-primary/20 hover:border-primary/50"
             >
-              <div className="bg-accent/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                <feature.icon className="h-8 w-8 text-accent" />
+              <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
+                <feature.icon className="h-8 w-8 text-primary" />
               </div>
               <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{feature.description}</p>

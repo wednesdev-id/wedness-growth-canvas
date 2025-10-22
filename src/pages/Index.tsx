@@ -5,6 +5,8 @@ import Services from "@/components/Services";
 import Approach from "@/components/Approach";
 import Values from "@/components/Values";
 import Portfolio from "@/components/Portfolio";
+import Product from "@/components/Product";
+import Impact from "@/components/Impact";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
@@ -19,6 +21,8 @@ const Index = () => {
       <Approach />
       <Values />
       <Portfolio />
+      <Product />
+      <Impact />
       <Testimonials />
       <Contact />
       <Footer />

@@ -20,6 +20,7 @@ const Navigation = () => {
     { name: "About", href: "#about" },
     { name: "Services", href: "#services" },
     { name: "Portfolio", href: "#portfolio" },
+    { name: "Products", href: "#products" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -38,8 +39,8 @@ const Navigation = () => {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-background/95 backdrop-blur-md shadow-soft"
-            : "bg-transparent"
+            ? "bg-[#0A0031]/95 backdrop-blur-md shadow-soft border-b border-border"
+            : "bg-gradient-to-r from-primary/10 to-accent/10 backdrop-blur-sm"
         }`}
       >
         <div className="container-custom">
@@ -49,12 +50,13 @@ const Navigation = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-2xl font-bold"
+              className="flex items-center"
             >
-              <span className={isScrolled ? "text-foreground" : "text-white"}>
-                Wedness
-              </span>
-              <span className="text-accent"> Dev</span>
+              <img 
+                src="/src/assets/LOGO WEDNESDEV-04.png" 
+                alt="WednesDev Logo" 
+                className="h-16 w-auto"
+              />
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -71,7 +73,7 @@ const Navigation = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`font-medium transition-colors hover:text-accent ${
-                    isScrolled ? "text-foreground" : "text-white"
+                    isScrolled ? "text-white" : "text-white"
                   }`}
                 >
                   {link.name}
@@ -79,7 +81,7 @@ const Navigation = () => {
               ))}
               <Button
                 onClick={() => handleNavClick("#contact")}
-                className="bg-accent hover:bg-accent/90 text-white font-semibold px-6 rounded-xl"
+                className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold px-6 rounded-xl shadow-lg"
               >
                 Get Started
               </Button>
@@ -91,9 +93,9 @@ const Navigation = () => {
               className="md:hidden"
             >
               {isMobileMenuOpen ? (
-                <X className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+                <X className={`h-6 w-6 ${isScrolled ? "text-white" : "text-white"}`} />
               ) : (
-                <Menu className={`h-6 w-6 ${isScrolled ? "text-foreground" : "text-white"}`} />
+                <Menu className={`h-6 w-6 ${isScrolled ? "text-white" : "text-white"}`} />
               )}
             </button>
           </div>
@@ -125,7 +127,7 @@ const Navigation = () => {
               ))}
               <Button
                 onClick={() => handleNavClick("#contact")}
-                className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-6 rounded-xl"
+                className="w-full bg-accent hover:bg-[hsl(var(--accent-hover))] text-white font-semibold py-6 rounded-xl"
               >
                 Get Started
               </Button>

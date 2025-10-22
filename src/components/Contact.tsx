@@ -56,7 +56,7 @@ const Contact = () => {
   };
 
   const handleWhatsApp = () => {
-    const message = encodeURIComponent(`Halo Wedness Dev, saya ${formData.name || '[Nama]'}. ${formData.message || 'Saya ingin konsultasi tentang sistem teknologi.'}`);
+    const message = encodeURIComponent(`Halo WednesDev, saya ${formData.name || '[Nama]'}. ${formData.message || 'Saya ingin konsultasi tentang sistem teknologi.'}`);
     window.open(`https://wa.me/6281234567890?text=${message}`, "_blank");
   };
 
@@ -70,10 +70,10 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Mari <span className="text-gradient">Berkolaborasi</span>
+            Siap untuk <span className="text-gradient">Berkembang?</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Diskusikan bagaimana kami dapat membantu bisnis Anda mencapai pertumbuhan signifikan
+            Konsultasikan kebutuhan sistem Anda dengan tim ahli kami. Gratis dan tanpa komitmen.
           </p>
         </motion.div>
 
@@ -95,8 +95,8 @@ const Contact = () => {
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
-                <div className="bg-accent/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="h-6 w-6 text-accent" />
+                <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MessageCircle className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">WhatsApp</h4>
@@ -105,18 +105,18 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="bg-accent/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-6 w-6 text-accent" />
+                <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
-                  <p className="text-muted-foreground text-sm">hello@wednessdev.com</p>
+                  <p className="text-muted-foreground text-sm">hello@wednesdev.com</p>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <div className="bg-accent/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-accent" />
+                <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Lokasi</h4>
@@ -128,7 +128,7 @@ const Contact = () => {
             {/* Quick WhatsApp Button */}
             <Button
               onClick={handleWhatsApp}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-6 rounded-2xl"
+              className="w-full bg-blue-600 hover:bg-[#07f29c] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-[#07f29c]/30 transition-all duration-300"
               size="lg"
             >
               <MessageCircle className="mr-2 h-5 w-5" />
@@ -190,7 +190,7 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-accent hover:bg-accent/90 text-white font-semibold py-6 rounded-2xl btn-glow"
+                className="w-full bg-blue-600 hover:bg-[#07f29c] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-[#07f29c]/30 transition-all duration-300"
                 size="lg"
               >
                 {isSubmitting ? (
