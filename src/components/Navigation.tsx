@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,6 +81,23 @@ const Navigation = () => {
                   {link.name}
                 </motion.a>
               ))}
+              
+              {/* Dark Mode Toggle */}
+              <Button
+                onClick={toggleTheme}
+                variant="ghost"
+                size="icon"
+                className={`rounded-full transition-colors ${
+                  isScrolled ? "text-white hover:bg-white/10" : "text-white hover:bg-white/10"
+                }`}
+              >
+                {theme === 'dark' ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
+              </Button>
+              
               <Button
                 onClick={() => handleNavClick("#contact")}
                 className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 text-white font-semibold px-6 rounded-xl shadow-lg"
@@ -88,16 +107,33 @@ const Navigation = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden"
-            >
-              {isMobileMenuOpen ? (
-                <X className={`h-6 w-6 ${isScrolled ? "text-white" : "text-white"}`} />
-              ) : (
-                <Menu className={`h-6 w-6 ${isScrolled ? "text-white" : "text-white"}`} />
-              )}
-            </button>
+            <div className="md:hidden flex items-center gap-2">
+              {/* Mobile Dark Mode Toggle */}
+              <Button
+                onClick={toggleTheme}
+                variant="ghost"
+                size="icon"
+                className={`rounded-full transition-colors ${
+                  isScrolled ? "text-white hover:bg-white/10" : "text-white hover:bg-white/10"
+                }`}
+              >
+                {theme === 'dark' ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
+              </Button>
+              
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? (
+                  <X className={`h-6 w-6 ${isScrolled ? "text-white" : "text-white"}`} />
+                ) : (
+                  <Menu className={`h-6 w-6 ${isScrolled ? "text-white" : "text-white"}`} />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>

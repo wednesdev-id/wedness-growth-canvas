@@ -96,7 +96,7 @@ const Contact = () => {
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MessageCircle className="h-6 w-6 text-primary" />
+                  <MessageCircle className="h-6 w-6 text-primary icon-dark-accent" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">WhatsApp</h4>
@@ -106,7 +106,7 @@ const Contact = () => {
 
               <div className="flex items-start gap-4">
                 <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-6 w-6 text-primary" />
+                  <Mail className="h-6 w-6 text-primary icon-dark-accent" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
@@ -116,7 +116,7 @@ const Contact = () => {
 
               <div className="flex items-start gap-4">
                 <div className="bg-primary/10 w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-primary" />
+                  <MapPin className="h-6 w-6 text-primary icon-dark-accent" />
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Lokasi</h4>
@@ -128,7 +128,7 @@ const Contact = () => {
             {/* Quick WhatsApp Button */}
             <Button
               onClick={handleWhatsApp}
-              className="w-full bg-blue-600 hover:bg-[#07f29c] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-[#07f29c]/30 transition-all duration-300"
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-primary/40 transition-all duration-300"
               size="lg"
             >
               <MessageCircle className="mr-2 h-5 w-5" />
@@ -142,7 +142,7 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-2xl border border-border shadow-soft">
+            <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-2xl border border-border shadow-soft card-dark-accent">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold mb-2">
                   Nama Lengkap
@@ -190,7 +190,7 @@ const Contact = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-[#07f29c] text-white font-semibold py-6 rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-[#07f29c]/30 transition-all duration-300"
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-primary/40 transition-all duration-300"
                 size="lg"
               >
                 {isSubmitting ? (

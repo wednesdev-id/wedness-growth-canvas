@@ -63,10 +63,10 @@ All colors MUST be HSL.
     --background: 245 100% 10%; /* Navy #0A0031 for footer/dark sections */
     --foreground: 0 0% 100%; /* White text on dark background */
 
-    --card: 245 100% 10%;
+    --card: 245 100% 12%; /* Slightly lighter than background for cards */
     --card-foreground: 0 0% 100%;
 
-    --popover: 245 100% 10%;
+    --popover: 245 100% 12%;
     --popover-foreground: 0 0% 100%;
 
     --primary: 225 85% 57%; /* Keep primary blue consistent */
@@ -84,9 +84,18 @@ All colors MUST be HSL.
     --destructive: 0 63% 31%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 245 100% 15%;
+    --border: 245 100% 20%; /* Lighter border for better visibility */
     --input: 245 100% 15%;
     --ring: 225 85% 57%; /* Primary blue for focus rings */
+
+    /* Dark mode specific gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(225 85% 57%) 0%, hsl(225 85% 47%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(158 94% 49%) 0%, hsl(158 80% 40%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(245 100% 8%) 0%, hsl(245 100% 6%) 100%);
+
+    /* Dark mode shadows */
+    --shadow-soft: 0 10px 40px -10px hsl(0 0% 0% / 0.3);
+    --shadow-glow: 0 0 50px hsl(225 70% 65% / 0.3);
   }
 }
 
@@ -124,5 +133,26 @@ All colors MUST be HSL.
   /* Custom hover utilities for accent colors */
   .hover-accent-desaturated {
     @apply hover:bg-[hsl(var(--accent-hover))];
+  }
+
+  /* Dark mode card styling with accent color */
+  .dark .card-dark-accent {
+    box-shadow: 0 4px 20px rgba(7, 240, 162, 0.15), 0 0 0 1px rgba(7, 240, 162, 0.2);
+    outline: 1px solid rgba(7, 240, 162, 0.3);
+  }
+
+  .dark .card-dark-accent:hover {
+    box-shadow: 0 8px 30px rgba(7, 240, 162, 0.25), 0 0 0 1px rgba(7, 240, 162, 0.4);
+    outline: 1px solid rgba(7, 240, 162, 0.5);
+  }
+
+  /* Dark mode icon styling */
+  .dark .icon-dark-accent {
+    color: #07f0a2 !important;
+  }
+
+  /* Dark mode number styling */
+  .dark .number-dark-accent {
+    color: #07f0a2 !important;
   }
 }

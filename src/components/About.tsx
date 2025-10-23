@@ -51,10 +51,10 @@ const About = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-primary/20 hover:border-primary/50"
+              className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-primary/20 hover:border-primary/50 card-dark-accent"
             >
               <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
-                <feature.icon className="h-8 w-8 text-primary" />
+                <feature.icon className="h-8 w-8 text-primary icon-dark-accent" />
               </div>
               <h3 className="text-2xl font-bold mb-4">{feature.title}</h3>
               <p className="text-muted-foreground leading-relaxed">{feature.description}</p>

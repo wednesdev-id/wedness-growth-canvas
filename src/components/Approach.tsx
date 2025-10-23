@@ -73,7 +73,7 @@ const Approach = () => {
                 className="relative"
               >
                 {/* Step Card */}
-                <div className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-primary/20 hover:border-primary/50 relative z-10">
+                <div className="bg-card rounded-2xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 border border-primary/20 hover:border-primary/50 relative z-10 card-dark-accent">
                   {/* Number Badge */}
                   <div className="absolute -top-4 -left-4 w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
                     {step.number}
@@ -81,7 +81,7 @@ const Approach = () => {
 
                   {/* Icon */}
                   <div className="bg-primary/10 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mt-4">
-                    <step.icon className="h-8 w-8 text-primary" />
+                    <step.icon className="h-8 w-8 text-primary icon-dark-accent" />
                   </div>
 
                   {/* Content */}

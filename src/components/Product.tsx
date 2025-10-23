@@ -128,13 +128,13 @@ const Product = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="p-6 h-full flex flex-col hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 group">
+              <Card className="p-6 h-full flex flex-col hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 group card-dark-accent">
                 {/* Product Header */}
                 <div className="flex items-start justify-between mb-4">
                   <div className="text-4xl mb-2">{product.image}</div>
                   <Badge 
                     variant={product.status === "Available" ? "default" : "secondary"}
-                    className={product.status === "Available" ? "bg-green-100 text-green-800" : ""}
+                    className={product.status === "Available" ? "bg-accent/10 text-accent dark:bg-accent/20 dark:text-accent" : ""}
                   >
                     {product.status}
                   </Badge>
@@ -158,7 +158,7 @@ const Product = () => {
                   {product.status === "Available" && (
                     <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
-                        <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                        <Star className="h-4 w-4 fill-accent text-accent" />
                         <span>{product.rating}</span>
                       </div>
                       <div className="flex items-center gap-1">
@@ -199,7 +199,7 @@ const Product = () => {
                   <div className="flex gap-2">
                     <Button
                       onClick={() => handleDemoClick(product.name)}
-                      className="flex-1 bg-blue-600 hover:bg-[#07f29c] text-white shadow-lg shadow-blue-600/30 hover:shadow-[#07f29c]/30 transition-all duration-300"
+                      className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 hover:shadow-primary/40 transition-all duration-300"
                       disabled={product.status === "Coming Soon"}
                     >
                       <ExternalLink className="mr-2 h-4 w-4" />
@@ -224,7 +224,7 @@ const Product = () => {
           </p>
           <Button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="bg-blue-600 hover:bg-[#07f29c] text-white font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-[#07f29c]/30 transition-all duration-300 hover:scale-105"
+            className="bg-primary hover:bg-accent text-primary-foreground font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-accent/30 transition-all duration-300 hover:scale-105"
           >
             Konsultasi Solusi Kustom
           </Button>

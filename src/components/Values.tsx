@@ -56,9 +56,9 @@ const Values = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group"
             >
-              <div className="bg-card rounded-2xl p-8 h-full border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow">
+              <div className="bg-card rounded-2xl p-8 h-full border border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow card-dark-accent">
                 <div className="bg-gradient-to-br from-primary/20 to-primary/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <value.icon className="h-8 w-8 text-primary" />
+                  <value.icon className="h-8 w-8 text-primary icon-dark-accent" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 transition-colors">
                   {value.title}
@@ -83,8 +83,8 @@ const Values = () => {
             {/* Before */}
             <div className="space-y-4">
               <h4 className="text-xl font-semibold mb-6 flex items-center">
-                <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center mr-3">
-                  <span className="text-red-400">✕</span>
+                <div className="w-8 h-8 rounded-full bg-destructive/20 flex items-center justify-center mr-3">
+                  <span className="text-destructive">✕</span>
                 </div>
                 Before Optimization
               </h4>
@@ -95,7 +95,7 @@ const Values = () => {
                 "High operational costs"
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start bg-white/5 rounded-xl p-4 backdrop-blur-sm">
-                  <span className="text-red-400 mr-3">▪</span>
+                  <span className="text-destructive mr-3">▪</span>
                   <span className="text-white/80">{item}</span>
                 </div>
               ))}
@@ -104,8 +104,8 @@ const Values = () => {
             {/* After */}
             <div className="space-y-4">
               <h4 className="text-xl font-semibold mb-6 flex items-center">
-                <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center mr-3">
-                  <span className="text-green-400">✓</span>
+                <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center mr-3">
+                  <span className="text-accent">✓</span>
                 </div>
                 After Optimization
               </h4>
@@ -116,7 +116,7 @@ const Values = () => {
                 "Reduced costs by 40%+"
               ].map((item, idx) => (
                 <div key={idx} className="flex items-start bg-white/10 rounded-xl p-4 backdrop-blur-sm">
-                  <span className="text-green-400 mr-3">▪</span>
+                  <span className="text-accent mr-3">▪</span>
                   <span className="font-medium">{item}</span>
                 </div>
               ))}

@@ -74,18 +74,18 @@ const Impact = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="group relative h-full p-8 border-2 border-border hover:border-primary/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-glow text-center">
+              <Card className="group relative h-full p-8 border border-border hover:border-primary/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-glow text-center card-dark-accent">
                 {/* Gradient Background on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className="bg-gradient-to-br from-primary to-primary/80 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="h-8 w-8 text-white" />
+                  <div className="bg-gradient-to-br from-primary/20 to-primary/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
+                    <stat.icon className="h-8 w-8 text-primary icon-dark-accent" />
                   </div>
 
                   {/* Value */}
-                  <h3 className="text-4xl font-bold mb-2 text-primary transition-colors">
+                  <h3 className="text-4xl font-bold mb-2 text-primary number-dark-accent transition-colors">
                     {stat.value}
                   </h3>
                   
@@ -113,7 +113,7 @@ const Impact = () => {
         >
           <div className="grid md:grid-cols-2 gap-8">
             {testimonials.map((testimonial, index) => (
-              <Card key={index} className="p-8 rounded-2xl border-2 border-border hover:border-primary/50 transition-all duration-300">
+              <Card key={index} className="p-8 rounded-2xl border border-border hover:border-primary/50 transition-all duration-300 card-dark-accent">
                 <blockquote className="text-lg text-muted-foreground mb-6 italic leading-relaxed">
                   "{testimonial.quote}"
                 </blockquote>
@@ -138,7 +138,7 @@ const Impact = () => {
           </p>
           <button 
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-            className="bg-blue-600 hover:bg-[#07f29c] text-white font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-blue-600/30 hover:shadow-[#07f29c]/30 transition-all duration-300 hover:scale-105"
+            className="bg-primary hover:bg-accent text-primary-foreground font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-accent/30 transition-all duration-300 hover:scale-105"
           >
             Mulai Konsultasi Sekarang
           </button>

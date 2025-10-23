@@ -43,7 +43,7 @@ const Footer = () => {
               className="h-20 w-auto"
             />
             </div>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-muted-foreground mb-6 max-w-md">
               Agensi untuk solusi sistem yang berdampak. Kami membantu bisnis berkembang melalui analisis, optimasi, dan sistem yang tepat sasaran.
             </p>
             <div className="flex gap-4">
@@ -51,7 +51,7 @@ const Footer = () => {
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 bg-gray-800 hover:bg-accent rounded-lg flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-muted hover:bg-accent rounded-lg flex items-center justify-center transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -69,7 +69,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-gray-300 hover:text-accent transition-colors"
+                      className="text-muted-foreground hover:text-accent transition-colors"
                     >
                       {link.name}
                     </a>
@@ -81,15 +81,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-300 text-sm">
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-muted-foreground text-sm">
             © 2024 WednesDev. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-gray-300 hover:text-accent transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-gray-300 hover:text-accent transition-colors">
+            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
               Terms of Service
             </a>
           </div>

@@ -58,7 +58,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto"
+            className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto"
           >
             Kami bantu bisnis Anda berkembang melalui analisis, optimasi, dan sistem yang berdampak nyata.
           </motion.p>
@@ -72,7 +72,7 @@ const Hero = () => {
             <Button
               size="lg"
               onClick={handleConsultation}
-              className="bg-accent hover:bg-[hsl(var(--accent-hover))] text-white font-semibold px-8 py-6 text-lg rounded-2xl btn-glow group"
+              className="bg-accent hover:bg-[hsl(var(--accent-hover))] text-[#111218] hover:text-white font-semibold px-8 py-6 text-lg rounded-2xl btn-glow group"
             >
               Konsultasi Sekarang
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -94,7 +94,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto"
+            className="grid grid-cols-3 gap-8 mt-16 mb-16 max-w-2xl mx-auto"
           >
             {[
               { number: "10+", label: "Projects Delivered" },
@@ -103,28 +103,12 @@ const Hero = () => {
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl md:text-4xl font-bold text-accent mb-2">{stat.number}</div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
+                <div className="text-sm text-muted-foreground">{stat.label}</div>
               </div>
             ))}
           </motion.div>
         </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
-      >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-accent rounded-full mt-2"
-          />
-        </div>
-      </motion.div>
     </section>
   );
 };

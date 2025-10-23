@@ -118,7 +118,7 @@ const Portfolio = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onClick={() => setSelectedProject(index)}
             >
-              <Card className="group cursor-pointer h-full p-6 rounded-2xl border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow">
+              <Card className="group cursor-pointer h-full p-6 rounded-2xl border-2 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-glow card-dark-accent">
                 <div className="text-6xl mb-4">{project.image}</div>
                 <Badge className="mb-3 bg-primary/10 text-primary hover:bg-primary/20">
                   {project.category}
