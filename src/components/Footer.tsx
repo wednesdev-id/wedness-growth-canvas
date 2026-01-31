@@ -1,24 +1,27 @@
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
 
+import { useLanguage } from "@/contexts/LanguageContext";
+
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Services: [
-      { name: "Sistem Bisnis Kustom", href: "#services" },
-      { name: "Optimasi Alur Kerja", href: "#services" },
-      { name: "Integrasi Teknologi", href: "#services" },
-      { name: "Konsultasi Digital", href: "#services" },
+    [t('footer.links.services')]: [
+      { name: t('footer.items.customSystem'), href: "#services" },
+      { name: t('footer.items.workflowOptimization'), href: "#services" },
+      { name: t('footer.items.techIntegration'), href: "#services" },
+      { name: t('footer.items.digitalConsulting'), href: "#services" },
     ],
-    Company: [
-      { name: "Tentang Kami", href: "#about" },
-      { name: "Langkah Kami", href: "#approach" },
-      { name: "Dampak Nyata", href: "#impact" },
-      { name: "Portfolio", href: "#portfolio" },
+    [t('footer.links.company')]: [
+      { name: t('footer.items.about'), href: "#about" },
+      { name: t('footer.items.approach'), href: "#approach" },
+      { name: t('footer.items.impact'), href: "#impact" },
+      { name: t('footer.items.portfolio'), href: "#portfolio" },
     ],
-    Contact: [
-      { name: "Hubungi Kami", href: "#contact" },
-      { name: "WhatsApp", href: "https://wa.me/6281339691260" },
+    [t('footer.links.contact')]: [
+      { name: t('footer.items.contact'), href: "#contact" },
+      { name: "WhatsApp", href: "https://wa.me/6282241598077" },
       { name: "Email", href: "mailto:wednesdev.id@gmail.com" },
     ],
   };
@@ -37,21 +40,21 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <img 
-              src="/LOGO WEDNESDEV-04.png" 
-              alt="WednesDev Logo" 
-              className="h-20 w-auto"
-            />
+              <img
+                src="/LOGO WEDNESDEV-04.png"
+                alt="WednesDev Logo"
+                className="h-20 w-auto"
+              />
             </div>
-            <p className="text-muted-foreground mb-6 max-w-md">
-              Agensi untuk solusi sistem yang berdampak. Kami membantu bisnis berkembang melalui analisis, optimasi, dan sistem yang tepat sasaran.
+            <p className="text-gray-400 mb-6 max-w-md">
+              {t('footer.brandDesc')}
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
                   href={social.href}
-                  className="w-10 h-10 bg-muted hover:bg-accent rounded-lg flex items-center justify-center transition-colors"
+                  className="w-10 h-10 bg-white/10 hover:bg-accent rounded-lg flex items-center justify-center transition-colors text-white"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5" />
@@ -69,7 +72,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <a
                       href={link.href}
-                      className="text-muted-foreground hover:text-accent transition-colors"
+                      className="text-gray-400 hover:text-accent transition-colors"
                     >
                       {link.name}
                     </a>
@@ -81,15 +84,15 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-muted-foreground text-sm">
-            © 2024 WednesDev. All rights reserved.
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-400 text-sm">
+            {t('footer.copyright')}
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="#" className="text-gray-400 hover:text-accent transition-colors">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="#" className="text-gray-400 hover:text-accent transition-colors">
               Terms of Service
             </a>
           </div>

@@ -4,49 +4,29 @@ import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { TrendingUp, Clock, DollarSign, Users } from "lucide-react";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 const Impact = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const stats = [
-    {
-      icon: TrendingUp,
-      value: "+200%",
-      label: "Efisiensi Operasional",
-      description: "Peningkatan rata-rata efisiensi operasional klien kami"
-    },
-    {
-      icon: Clock,
-      value: "40%",
-      label: "Penghematan Waktu",
-      description: "Waktu produksi yang berhasil dihemat melalui optimasi sistem"
-    },
-    {
-      icon: DollarSign,
-      value: "35%",
-      label: "Pengurangan Biaya",
-      description: "Biaya operasional yang berhasil ditekan dengan sistem yang tepat"
-    },
-    {
-      icon: Users,
-      value: "50+",
-      label: "Klien Puas",
-      description: "Perusahaan yang telah merasakan dampak positif solusi kami"
-    }
-  ];
+  const statsData = t('impact.stats') || [];
+  const statIcons = [TrendingUp, Clock, DollarSign, Users];
+  const statValues = ["+200%", "40%", "35%", "50+"];
 
-  const testimonials = [
-    {
-      quote: "Solusi kami membantu klien menghemat waktu dan biaya produksi hingga 40%.",
-      author: "Tim WednesDev",
-      role: "Impact Analysis"
-    },
-    {
-      quote: "Sistem yang dibangun tidak hanya efisien, tapi juga scalable untuk pertumbuhan jangka panjang.",
-      author: "Client Feedback",
-      role: "System Implementation"
-    }
-  ];
+  const stats = statsData.map((stat: any, index: number) => ({
+    ...stat,
+    icon: statIcons[index],
+    value: statValues[index]
+  }));
+
+  const testimonialsData = t('impact.testimonials') || [];
+  const testimonialAuthors = ["Tim WednesDev", "Client Feedback"];
+
+  const testimonials = testimonialsData.map((testi: any, index: number) => ({
+    ...testi,
+    author: testimonialAuthors[index]
+  }));
 
   return (
     <section id="impact" className="section-padding bg-background" ref={ref}>
@@ -58,10 +38,10 @@ const Impact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-gradient">Dampak Nyata</span> untuk Bisnis Anda
+            <span className="text-gradient">{t('impact.title')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Hasil terukur yang telah kami capai bersama klien-klien kami
+            {t('impact.subtitle')}
           </p>
         </motion.div>
 
@@ -77,7 +57,7 @@ const Impact = () => {
               <Card className="group relative h-full p-8 border border-border hover:border-primary/50 rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-glow text-center card-dark-accent">
                 {/* Gradient Background on Hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
+
                 <div className="relative z-10">
                   {/* Icon */}
                   <div className="bg-gradient-to-br from-primary/20 to-primary/5 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition-transform duration-300">
@@ -88,12 +68,12 @@ const Impact = () => {
                   <h3 className="text-4xl font-bold mb-2 text-primary number-dark-accent transition-colors">
                     {stat.value}
                   </h3>
-                  
+
                   {/* Label */}
                   <h4 className="text-xl font-semibold mb-3 transition-colors">
                     {stat.label}
                   </h4>
-                  
+
                   {/* Description */}
                   <p className="text-muted-foreground text-sm leading-relaxed">
                     {stat.description}
@@ -134,13 +114,13 @@ const Impact = () => {
           className="text-center mt-16"
         >
           <p className="text-lg text-muted-foreground mb-6">
-            Siap merasakan dampak yang sama untuk bisnis Anda?
+            {t('impact.cta')}
           </p>
-          <button 
+          <button
             onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
             className="bg-primary hover:bg-accent text-primary-foreground font-semibold px-8 py-4 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-accent/30 transition-all duration-300 hover:scale-105"
           >
-            Mulai Konsultasi Sekarang
+            {t('impact.button')}
           </button>
         </motion.div>
       </div>

@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { Send, MessageCircle, Mail, MapPin } from "lucide-react";
 import { z } from "zod";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Nama harus diisi").max(100, "Nama terlalu panjang"),
@@ -15,38 +16,74 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const { toast } = useToast();
-  
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: ""
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const validateField = (field: string, value: string) => {
+    try {
+      contactSchema.shape[field as keyof typeof contactSchema.shape].parse(value);
+      setErrors(prev => ({ ...prev, [field]: "" }));
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        setErrors(prev => ({ ...prev, [field]: error.errors[0].message }));
+      }
+    }
+  };
+
+  const handleFieldChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+    if (touched[field]) {
+      validateField(field, value);
+    }
+  };
+
+  const handleFieldBlur = (field: string) => {
+    setTouched(prev => ({ ...prev, [field]: true }));
+    validateField(field, formData[field as keyof typeof formData]);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       const validated = contactSchema.parse(formData);
       setIsSubmitting(true);
 
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
       toast({
-        title: "Pesan Terkirim! ✓",
-        description: "Terima kasih telah menghubungi kami. Kami akan segera merespons.",
+        title: `${t('contact.form.success')} ✓`,
+        description: t('contact.form.successDesc'),
+        className: "bg-green-500 text-white",
       });
-      
+
       setFormData({ name: "", email: "", message: "" });
+      setErrors({});
+      setTouched({});
     } catch (error) {
       if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach(err => {
+          if (err.path[0]) {
+            fieldErrors[err.path[0] as string] = err.message;
+          }
+        });
+        setErrors(fieldErrors);
         toast({
           title: "Validasi Gagal",
-          description: error.errors[0].message,
+          description: "Mohon periksa kembali form Anda",
           variant: "destructive",
         });
       }
@@ -70,10 +107,10 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Siap untuk <span className="text-gradient">Berkembang?</span>
+            <span className="text-gradient">{t('contact.title')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Konsultasikan kebutuhan sistem Anda dengan tim ahli kami. Gratis dan tanpa komitmen.
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -86,10 +123,9 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-6">Hubungi Kami</h3>
+              <h3 className="text-2xl font-bold mb-6">{t('contact.form.title')}</h3>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Tim kami siap mendengarkan kebutuhan Anda dan memberikan solusi terbaik 
-                untuk tantangan teknologi yang Anda hadapi.
+                {t('contact.form.description')}
               </p>
             </div>
 
@@ -100,7 +136,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">WhatsApp</h4>
-                  <p className="text-muted-foreground text-sm">+62 812-3456-7890</p>
+                  <p className="text-muted-foreground text-sm">+62 822 4159 8077(Whatsapp)</p>
                 </div>
               </div>
 
@@ -110,7 +146,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold mb-1">Email</h4>
-                  <p className="text-muted-foreground text-sm">hello@wednesdev.com</p>
+                  <p className="text-muted-foreground text-sm">wednesdev.id@gmail.com</p>
                 </div>
               </div>
 
@@ -119,8 +155,8 @@ const Contact = () => {
                   <MapPin className="h-6 w-6 text-primary icon-dark-accent" />
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-1">Lokasi</h4>
-                  <p className="text-muted-foreground text-sm">Jakarta, Indonesia</p>
+                  <h4 className="font-semibold mb-1">{t('contact.form.locations')}</h4>
+                  <p className="text-muted-foreground text-sm">Sleman, Indonesia</p>
                 </div>
               </div>
             </div>
@@ -132,7 +168,7 @@ const Contact = () => {
               size="lg"
             >
               <MessageCircle className="mr-2 h-5 w-5" />
-              Chat Langsung via WhatsApp
+              {t('contact.whatsappButton')}
             </Button>
           </motion.div>
 
@@ -145,59 +181,89 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6 bg-card p-8 rounded-2xl border border-border shadow-soft card-dark-accent">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold mb-2">
-                  Nama Lengkap
+                  {t('contact.form.name')}
                 </label>
                 <Input
                   id="name"
                   type="text"
-                  placeholder="John Doe"
+                  placeholder={t('contact.form.namePlaceholder')}
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="h-12 rounded-xl"
+                  onChange={(e) => handleFieldChange('name', e.target.value)}
+                  onBlur={() => handleFieldBlur('name')}
+                  className={`h-12 rounded-xl ${errors.name && touched.name
+                    ? "border-red-500 focus-visible:ring-red-500"
+                    : touched.name && !errors.name
+                      ? "border-green-500 focus-visible:ring-green-500"
+                      : ""
+                    }`}
                   required
                 />
+                {errors.name && touched.name && (
+                  <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold mb-2">
-                  Email
+                  {t('contact.form.email')}
                 </label>
                 <Input
                   id="email"
                   type="email"
                   placeholder="john@company.com"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="h-12 rounded-xl"
+                  onChange={(e) => handleFieldChange('email', e.target.value)}
+                  onBlur={() => handleFieldBlur('email')}
+                  className={`h-12 rounded-xl ${errors.email && touched.email
+                    ? "border-red-500 focus-visible:ring-red-500"
+                    : touched.email && !errors.email
+                      ? "border-green-500 focus-visible:ring-green-500"
+                      : ""
+                    }`}
                   required
                 />
+                {errors.email && touched.email && (
+                  <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-semibold mb-2">
-                  Pesan
+                  {t('contact.form.message')}
                 </label>
                 <Textarea
                   id="message"
-                  placeholder="Ceritakan tentang project atau tantangan yang Anda hadapi..."
+                  placeholder={t('contact.form.messagePlaceholder')}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="min-h-32 rounded-xl resize-none"
+                  onChange={(e) => handleFieldChange('message', e.target.value)}
+                  onBlur={() => handleFieldBlur('message')}
+                  className={`min-h-32 rounded-xl resize-none ${errors.message && touched.message
+                    ? "border-red-500 focus-visible:ring-red-500"
+                    : touched.message && !errors.message
+                      ? "border-green-500 focus-visible:ring-green-500"
+                      : ""
+                    }`}
                   required
                 />
+                {errors.message && touched.message && (
+                  <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+                )}
               </div>
 
               <Button
                 type="submit"
-                disabled={isSubmitting}
+                disabled={isSubmitting || Object.keys(errors).some(k => errors[k])}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 rounded-2xl shadow-lg shadow-primary/30 hover:shadow-primary/40 transition-all duration-300"
                 size="lg"
               >
                 {isSubmitting ? (
-                  "Mengirim..."
+                  <>
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2" />
+                    {t('contact.form.submitting')}
+                  </>
                 ) : (
                   <>
-                    Kirim Pesan
+                    {t('contact.form.submit')}
                     <Send className="ml-2 h-5 w-5" />
                   </>
                 )}

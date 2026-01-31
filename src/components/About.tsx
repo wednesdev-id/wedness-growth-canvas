@@ -2,26 +2,29 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Eye, TrendingUp } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: Target,
-      title: "Misi Kami",
-      description: "Memberdayakan bisnis dengan solusi teknologi yang tepat sasaran dan berdampak langsung pada pertumbuhan."
+      title: t('about.mission.title'),
+      description: t('about.mission.description')
     },
     {
       icon: Eye,
-      title: "Visi Kami",
-      description: "Menjadi mitra teknologi terpercaya yang menghadirkan transformasi digital berkelanjutan."
+      title: t('about.vision.title'),
+      description: t('about.vision.description')
     },
     {
       icon: TrendingUp,
-      title: "Pendekatan Kami",
-      description: "Kolaboratif, data-driven, dan fokus pada impact bisnis yang terukur."
+      title: t('about.approach.title'),
+      description: t('about.approach.description')
     }
   ];
 
@@ -35,12 +38,10 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Tentang <span className="text-gradient">WednesDev</span>
+            {t('about.title')} <span className="text-gradient">WednesDev</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            WednesDev adalah agensi yang berfokus pada pendampingan solusi dan pembuatan sistem 
-            untuk membantu perusahaan tumbuh secara signifikan. Fokus utama kami adalah analisis risiko, 
-            mitigasi masalah, dan optimasi sistem yang berorientasi pada impact terhadap bisnis.
+            {t('about.description')}
           </p>
         </motion.div>
 
@@ -68,14 +69,9 @@ const About = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="bg-gradient-primary rounded-3xl p-12 text-center text-white"
         >
-          <h3 className="text-3xl font-bold mb-4">Nilai Utama Kami</h3>
+          <h3 className="text-3xl font-bold mb-4">{t('about.values.title')}</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-            {[
-              "Analisis Risiko Mendalam",
-              "Mitigasi Masalah Strategis",
-              "Optimasi Sistem Berkelanjutan",
-              "Kolaborasi Data-Driven"
-            ].map((value, index) => (
+            {t('about.values.items').map((value: string, index: number) => (
               <div key={index} className="bg-white/10 rounded-xl p-4 backdrop-blur-sm">
                 <p className="font-semibold">{value}</p>
               </div>

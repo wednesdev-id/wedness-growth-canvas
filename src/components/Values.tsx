@@ -2,33 +2,20 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Users, BarChart3, Layers } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Values = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const values = [
-    {
-      icon: Target,
-      title: "Impact-Driven",
-      description: "Setiap solusi dirancang untuk memberikan dampak langsung pada pertumbuhan dan efisiensi bisnis Anda."
-    },
-    {
-      icon: Users,
-      title: "Collaborative",
-      description: "Kami percaya pada kemitraan sejati. Tim kami bekerja bersama tim Anda untuk mencapai tujuan bersama."
-    },
-    {
-      icon: BarChart3,
-      title: "Data-Oriented",
-      description: "Keputusan berbasis data, bukan asumsi. Setiap rekomendasi didukung oleh analisis mendalam dan metrics."
-    },
-    {
-      icon: Layers,
-      title: "Scalable Systems",
-      description: "Sistem yang kami bangun dirancang untuk tumbuh bersama bisnis Anda, dari startup hingga enterprise."
-    }
-  ];
+  const valuesData = t('values.items') || [];
+  const icons = [Target, Users, BarChart3, Layers];
+
+  const values = valuesData.map((val: any, index: number) => ({
+    ...val,
+    icon: icons[index] || Target
+  }));
 
   return (
     <section id="values" className="section-padding bg-background" ref={ref}>
@@ -40,10 +27,10 @@ const Values = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Nilai & <span className="text-gradient">Impact</span>
+            {t('values.title').split('&')[0]} & <span className="text-gradient">{t('values.title').split('&')[1] || 'Impact'}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Prinsip-prinsip yang memandu setiap keputusan dan tindakan kami
+            {t('values.subtitle')}
           </p>
         </motion.div>
 
@@ -78,7 +65,7 @@ const Values = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-20 bg-gradient-primary rounded-3xl p-12 text-white"
         >
-          <h3 className="text-3xl font-bold text-center mb-12">Impact Optimization</h3>
+          <h3 className="text-3xl font-bold text-center mb-12">{t('values.impactOptimization.title')}</h3>
           <div className="grid md:grid-cols-2 gap-12">
             {/* Before */}
             <div className="space-y-4">
@@ -86,14 +73,9 @@ const Values = () => {
                 <div className="w-8 h-8 rounded-full bg-destructive/20 flex items-center justify-center mr-3">
                   <span className="text-destructive">✕</span>
                 </div>
-                Before Optimization
+                {t('values.impactOptimization.before.title')}
               </h4>
-              {[
-                "Sistem lambat & tidak responsif",
-                "Frequent downtime & bugs",
-                "Unclear scalability path",
-                "High operational costs"
-              ].map((item, idx) => (
+              {(t('values.impactOptimization.before.items') || []).map((item: string, idx: number) => (
                 <div key={idx} className="flex items-start bg-white/5 rounded-xl p-4 backdrop-blur-sm">
                   <span className="text-destructive mr-3">▪</span>
                   <span className="text-white/80">{item}</span>
@@ -107,14 +89,9 @@ const Values = () => {
                 <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center mr-3">
                   <span className="text-accent">✓</span>
                 </div>
-                After Optimization
+                {t('values.impactOptimization.after.title')}
               </h4>
-              {[
-                "Fast & reliable performance",
-                "99.9% uptime guaranteed",
-                "Future-proof architecture",
-                "Reduced costs by 40%+"
-              ].map((item, idx) => (
+              {(t('values.impactOptimization.after.items') || []).map((item: string, idx: number) => (
                 <div key={idx} className="flex items-start bg-white/10 rounded-xl p-4 backdrop-blur-sm">
                   <span className="text-accent mr-3">▪</span>
                   <span className="font-medium">{item}</span>

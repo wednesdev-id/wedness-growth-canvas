@@ -2,37 +2,21 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Search, AlertTriangle, Settings, Rocket } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Approach = () => {
+  const { t } = useLanguage();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const steps = [
-    {
-      icon: Search,
-      number: "01",
-      title: "Analisis Risiko & Kebutuhan",
-      description: "Deep dive ke dalam sistem Anda untuk memahami konteks bisnis, identifikasi bottleneck, dan mapping potensi risiko."
-    },
-    {
-      icon: AlertTriangle,
-      number: "02",
-      title: "Rencana & Mitigasi Masalah",
-      description: "Rancang strategi penyelesaian masalah yang tepat sasaran dengan meminimalkan disruption pada operasional bisnis."
-    },
-    {
-      icon: Settings,
-      number: "03",
-      title: "Pembuatan & Implementasi Sistem",
-      description: "Implementasi solusi dan fine-tuning sistem untuk mencapai performa optimal yang mendukung skalabilitas."
-    },
-    {
-      icon: Rocket,
-      number: "04",
-      title: "Optimasi & Monitoring Dampak",
-      description: "Monitoring berkelanjutan dan iterasi untuk memastikan sistem terus berkembang sejalan dengan pertumbuhan bisnis."
-    }
-  ];
+  const stepsData = t('approach.steps') || [];
+  const icons = [Search, AlertTriangle, Settings, Rocket];
+
+  const steps = stepsData.map((step: any, index: number) => ({
+    ...step,
+    icon: icons[index] || Search,
+    number: `0${index + 1}`
+  }));
 
   return (
     <section id="approach" className="section-padding bg-secondary relative overflow-hidden" ref={ref}>
@@ -52,10 +36,10 @@ const Approach = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            <span className="text-gradient">Langkah Kami</span>
+            <span className="text-gradient">{t('approach.title')}</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Metodologi terstruktur untuk memastikan setiap proyek mencapai hasil yang terukur
+            {t('approach.subtitle')}
           </p>
         </motion.div>
 
