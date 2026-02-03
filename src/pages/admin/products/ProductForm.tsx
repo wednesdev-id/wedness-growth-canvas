@@ -24,14 +24,18 @@ import {
 } from "@/components/ui/select";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { ImageUpload } from "@/components/ui/image-upload";
+import { MultiImageUpload } from "@/components/ui/multi-image-upload";
 
 // Schema
 const productSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
     description: z.string().optional(),
     category: z.string().min(1, "Category is required"),
-    price: z.string().min(1, "Price is required"),
-    image_url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+    // price removed from form
+    // price: z.string().min(1, "Price is required"),
+    image_url: z.string().url("Must be a valid URL").or(z.literal("")),
+    gallery: z.array(z.string()).optional(), // Gallery images
     product_url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
     status: z.enum(["available", "coming_soon"]),
     features: z.string().optional(), // We'll handle comma-separated string for simplicity
@@ -54,8 +58,10 @@ export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
             name: "",
             description: "",
             category: "",
-            price: "",
+            // price: "",
+            // price: "",
             image_url: "",
+            gallery: [],
             product_url: "",
             status: "available",
             features: "",
@@ -68,8 +74,10 @@ export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
                 name: initialData.name,
                 description: initialData.description || "",
                 category: initialData.category || "",
-                price: initialData.price || "",
+                // price: initialData.price || "",
+                // price: initialData.price || "",
                 image_url: initialData.image_url || "",
+                gallery: initialData.gallery || [],
                 product_url: initialData.product_url || "",
                 status: initialData.status as "available" | "coming_soon",
                 features: initialData.features?.join(", ") || "",
@@ -116,34 +124,19 @@ export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
                     )}
                 />
 
-                <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                        control={form.control}
-                        name="category"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Category</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="SaaS, Enterprise..." {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="price"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Price</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Rp 5.000.000" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                </div>
+                <FormField
+                    control={form.control}
+                    name="category"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Category</FormLabel>
+                            <FormControl>
+                                <Input placeholder="SaaS, Enterprise..." {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
                 <FormField
                     control={form.control}
@@ -172,11 +165,36 @@ export function ProductForm({ initialData, onSuccess }: ProductFormProps) {
                     name="image_url"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Image URL</FormLabel>
+                            <FormLabel>Main Image</FormLabel>
                             <FormControl>
-                                <Input placeholder="https://..." {...field} />
+                                <ImageUpload
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    folder="products"
+                                    label="Upload Main Image"
+                                />
                             </FormControl>
-                            <FormDescription>Link to an image (Unsplash, etc.)</FormDescription>
+                            <FormDescription>Upload a main image for the product.</FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+                <FormField
+                    control={form.control}
+                    name="gallery"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Gallery Images</FormLabel>
+                            <FormControl>
+                                <MultiImageUpload
+                                    value={field.value || []}
+                                    onChange={field.onChange}
+                                    folder="products/gallery"
+                                    label="Upload Gallery Images"
+                                    maxFiles={8}
+                                />
+                            </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}

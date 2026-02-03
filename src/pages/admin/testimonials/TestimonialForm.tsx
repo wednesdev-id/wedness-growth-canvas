@@ -16,13 +16,14 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { ImageUpload } from "@/components/ui/image-upload";
 
 // Schema
 const testimonialSchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
     role: z.string().min(1, "Role is required"),
     company: z.string().min(1, "Company is required"),
-    avatar: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+    avatar: z.string().url("Must be a valid URL").or(z.literal("")),
     rating: z.coerce.number().min(0).max(5),
     testimonial: z.string().min(10, "Testimonial must be at least 10 characters"),
 });
@@ -124,34 +125,24 @@ export function TestimonialForm({ initialData, onSuccess }: TestimonialFormProps
                     />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                        control={form.control}
-                        name="rating"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Rating (0-5)</FormLabel>
-                                <FormControl>
-                                    <Input type="number" min={0} max={5} {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="avatar"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Avatar URL</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="https://..." {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                </div>
+                <FormField
+                    control={form.control}
+                    name="avatar"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Avatar Image</FormLabel>
+                            <FormControl>
+                                <ImageUpload
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    folder="testimonials"
+                                    label="Upload Avatar"
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
                 <FormField
                     control={form.control}

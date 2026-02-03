@@ -13,6 +13,7 @@ import {
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useTestimonials } from "@/hooks/useTestimonials";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Testimonials = () => {
   const { t } = useLanguage();
@@ -61,12 +62,7 @@ const Testimonials = () => {
                 {testimonials?.map((testimonial, index) => (
                   <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
                     <Card className="p-8 h-full rounded-2xl border-2 border-border hover:border-primary/50 transition-all duration-300 card-dark-accent">
-                      {/* Rating Stars */}
-                      <div className="flex gap-1 mb-4">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-5 w-5 fill-accent text-accent" />
-                        ))}
-                      </div>
+
 
                       {/* Testimonial Text */}
                       <p className="text-muted-foreground mb-6 leading-relaxed italic">
@@ -75,7 +71,10 @@ const Testimonials = () => {
 
                       {/* Author Info */}
                       <div className="flex items-center gap-4">
-                        <div className="text-4xl">{testimonial.avatar}</div>
+                        <Avatar className="h-12 w-12 border border-border">
+                          <AvatarImage src={testimonial.avatar} alt={testimonial.name} className="object-cover" />
+                          <AvatarFallback>{testimonial.name.substring(0, 2).toUpperCase()}</AvatarFallback>
+                        </Avatar>
                         <div>
                           <h4 className="font-bold">{testimonial.name}</h4>
                           <p className="text-sm text-muted-foreground">

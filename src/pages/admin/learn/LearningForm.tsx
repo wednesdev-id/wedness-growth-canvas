@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/select";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { ImageUpload } from "@/components/ui/image-upload";
 
 // Schema
 const learningSchema = z.object({
@@ -32,7 +33,7 @@ const learningSchema = z.object({
     level: z.enum(["Beginner", "Intermediate", "Advanced"]),
     duration: z.string().min(1, "Duration is required"),
     instructor: z.string().optional(),
-    image_url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+    image_url: z.string().url("Must be a valid URL").or(z.literal("")),
     link_url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
     tags: z.string().optional(), // Comma separated string
 });
@@ -190,9 +191,14 @@ export function LearningForm({ initialData, onSuccess }: LearningFormProps) {
                     name="image_url"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Image URL</FormLabel>
+                            <FormLabel>Resource Image</FormLabel>
                             <FormControl>
-                                <Input placeholder="https://..." {...field} />
+                                <ImageUpload
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    folder="learning"
+                                    label="Upload Resource Image"
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS products (
   release_date VARCHAR(50),
   features TEXT[] DEFAULT '{}',
   image_url TEXT,
+  gallery TEXT[] DEFAULT '{}',
   product_url TEXT, -- Renamed from demo_url
   status VARCHAR(20) DEFAULT 'available' CHECK (status IN ('available', 'coming_soon')),
   role VARCHAR(100), -- kept for compatibility, same as category
@@ -28,12 +29,31 @@ BEGIN
     END IF;
 END $$;
 
+-- Ensure gallery column exists for products (Migration logic)
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'products' AND column_name = 'gallery') THEN
+        ALTER TABLE products ADD COLUMN gallery TEXT[] DEFAULT '{}';
+    END IF;
+END $$;
+
 ALTER TABLE products ENABLE ROW LEVEL SECURITY;
 
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'products' AND policyname = 'Allow public read access') THEN
         CREATE POLICY "Allow public read access" ON products FOR SELECT USING (true);
+    END IF;
+
+    -- Add Write Access for Authenticated Users
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'products' AND policyname = 'Allow authenticated insert') THEN
+        CREATE POLICY "Allow authenticated insert" ON products FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'products' AND policyname = 'Allow authenticated update') THEN
+        CREATE POLICY "Allow authenticated update" ON products FOR UPDATE USING (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'products' AND policyname = 'Allow authenticated delete') THEN
+        CREATE POLICY "Allow authenticated delete" ON products FOR DELETE USING (auth.role() = 'authenticated');
     END IF;
 END $$;
 
@@ -68,6 +88,17 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'blog_posts' AND policyname = 'Allow public read access') THEN
         CREATE POLICY "Allow public read access" ON blog_posts FOR SELECT USING (true);
     END IF;
+
+    -- Add Write Access for Authenticated Users
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'blog_posts' AND policyname = 'Allow authenticated insert') THEN
+        CREATE POLICY "Allow authenticated insert" ON blog_posts FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'blog_posts' AND policyname = 'Allow authenticated update') THEN
+        CREATE POLICY "Allow authenticated update" ON blog_posts FOR UPDATE USING (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'blog_posts' AND policyname = 'Allow authenticated delete') THEN
+        CREATE POLICY "Allow authenticated delete" ON blog_posts FOR DELETE USING (auth.role() = 'authenticated');
+    END IF;
 END $$;
 
 -- 3. Learning Resources Table
@@ -92,6 +123,17 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'learning_resources' AND policyname = 'Allow public read access') THEN
         CREATE POLICY "Allow public read access" ON learning_resources FOR SELECT USING (true);
     END IF;
+
+    -- Add Write Access for Authenticated Users
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'learning_resources' AND policyname = 'Allow authenticated insert') THEN
+        CREATE POLICY "Allow authenticated insert" ON learning_resources FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'learning_resources' AND policyname = 'Allow authenticated update') THEN
+        CREATE POLICY "Allow authenticated update" ON learning_resources FOR UPDATE USING (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'learning_resources' AND policyname = 'Allow authenticated delete') THEN
+        CREATE POLICY "Allow authenticated delete" ON learning_resources FOR DELETE USING (auth.role() = 'authenticated');
+    END IF;
 END $$;
 
 -- 4. Portfolio Projects Table
@@ -101,6 +143,7 @@ CREATE TABLE IF NOT EXISTS portfolio_projects (
   description TEXT,
   category VARCHAR(100),
   image_url TEXT,
+  gallery TEXT[] DEFAULT '{}',
   results TEXT[] DEFAULT '{}',
   tech TEXT[] DEFAULT '{}',
   rating DECIMAL(2,1) DEFAULT 5.0,
@@ -110,12 +153,31 @@ CREATE TABLE IF NOT EXISTS portfolio_projects (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
+-- Ensure gallery column exists for portfolio_projects (Migration logic)
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name = 'portfolio_projects' AND column_name = 'gallery') THEN
+        ALTER TABLE portfolio_projects ADD COLUMN gallery TEXT[] DEFAULT '{}';
+    END IF;
+END $$;
+
 ALTER TABLE portfolio_projects ENABLE ROW LEVEL SECURITY;
 
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'portfolio_projects' AND policyname = 'Allow public read access') THEN
         CREATE POLICY "Allow public read access" ON portfolio_projects FOR SELECT USING (true);
+    END IF;
+
+    -- Add Write Access for Authenticated Users
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'portfolio_projects' AND policyname = 'Allow authenticated insert') THEN
+        CREATE POLICY "Allow authenticated insert" ON portfolio_projects FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'portfolio_projects' AND policyname = 'Allow authenticated update') THEN
+        CREATE POLICY "Allow authenticated update" ON portfolio_projects FOR UPDATE USING (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'portfolio_projects' AND policyname = 'Allow authenticated delete') THEN
+        CREATE POLICY "Allow authenticated delete" ON portfolio_projects FOR DELETE USING (auth.role() = 'authenticated');
     END IF;
 END $$;
 
@@ -140,6 +202,17 @@ BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'testimonials' AND policyname = 'Allow public read access') THEN
         CREATE POLICY "Allow public read access" ON testimonials FOR SELECT USING (true);
     END IF;
+
+    -- Add Write Access for Authenticated Users
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'testimonials' AND policyname = 'Allow authenticated insert') THEN
+        CREATE POLICY "Allow authenticated insert" ON testimonials FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'testimonials' AND policyname = 'Allow authenticated update') THEN
+        CREATE POLICY "Allow authenticated update" ON testimonials FOR UPDATE USING (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'testimonials' AND policyname = 'Allow authenticated delete') THEN
+        CREATE POLICY "Allow authenticated delete" ON testimonials FOR DELETE USING (auth.role() = 'authenticated');
+    END IF;
 END $$;
 
 -- 6. Service Packages Table
@@ -162,6 +235,17 @@ DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'service_packages' AND policyname = 'Allow public read access') THEN
         CREATE POLICY "Allow public read access" ON service_packages FOR SELECT USING (true);
+    END IF;
+
+    -- Add Write Access for Authenticated Users
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'service_packages' AND policyname = 'Allow authenticated insert') THEN
+        CREATE POLICY "Allow authenticated insert" ON service_packages FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'service_packages' AND policyname = 'Allow authenticated update') THEN
+        CREATE POLICY "Allow authenticated update" ON service_packages FOR UPDATE USING (auth.role() = 'authenticated');
+    END IF;
+    IF NOT EXISTS (SELECT 1 FROM pg_policies WHERE tablename = 'service_packages' AND policyname = 'Allow authenticated delete') THEN
+        CREATE POLICY "Allow authenticated delete" ON service_packages FOR DELETE USING (auth.role() = 'authenticated');
     END IF;
 END $$;
 

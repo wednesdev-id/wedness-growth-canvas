@@ -60,6 +60,7 @@ export interface Product {
     users: string;
     release_date: string;
     features: string[];
+    gallery: string[];
     image_url: string;
     product_url: string | null;
     status: 'available' | 'coming_soon';
@@ -149,6 +150,7 @@ export interface PortfolioProject {
     description: string;
     category: string;
     image_url: string;
+    gallery: string[];
     results: string[];
     tech: string[];
     rating: number;

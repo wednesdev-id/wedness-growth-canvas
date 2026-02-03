@@ -101,11 +101,11 @@ const BlogDetail = () => {
 
                     {/* Hero Image */}
                     {post.image_url && (
-                        <div className="rounded-2xl overflow-hidden mb-12 border border-border bg-muted aspect-video shadow-lg">
+                        <div className="rounded-2xl overflow-hidden mb-12 border border-border bg-muted shadow-lg relative group">
                             <img
                                 src={post.image_url}
                                 alt={post.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-auto max-h-[500px] object-cover transition-transform duration-500 group-hover:scale-105"
                             />
                         </div>
                     )}

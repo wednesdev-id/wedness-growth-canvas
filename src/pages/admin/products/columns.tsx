@@ -35,10 +35,7 @@ export const columns = ({ onEdit, onDelete }: ProductColumnActions): ColumnDef<P
         accessorKey: "category",
         header: "Category",
     },
-    {
-        accessorKey: "price",
-        header: "Price",
-    },
+    // Price column removed
     {
         accessorKey: "product_url",
         header: "Link",

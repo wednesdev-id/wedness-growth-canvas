@@ -35,11 +35,7 @@ export const columns = ({ onEdit, onDelete }: PortfolioColumnActions): ColumnDef
         accessorKey: "category",
         header: "Category",
     },
-    {
-        accessorKey: "rating",
-        header: "Rating",
-        cell: ({ row }) => <Badge variant="outline">{row.getValue("rating")}/5</Badge>,
-    },
+    // Rating column removed
     {
         accessorKey: "publish_date",
         header: "Date",

@@ -192,6 +192,24 @@ const Portfolio = () => {
                     <p className="text-xs text-center text-muted-foreground">{t('portfolio.modal.screenshot')}</p>
                   </div>
                 </div>
+
+                {/* Gallery Section */}
+                {projects[selectedProjectIndex].gallery && projects[selectedProjectIndex].gallery.length > 0 && (
+                  <div className="mt-8 pt-8 border-t border-border">
+                    <h4 className="font-semibold text-lg mb-4">Gallery</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {projects[selectedProjectIndex].gallery.map((img, i) => (
+                        <div key={i} className="rounded-lg overflow-hidden border border-border bg-muted relative group">
+                          <img
+                            src={img}
+                            alt={`Gallery ${i + 1}`}
+                            className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Footer: More by */}

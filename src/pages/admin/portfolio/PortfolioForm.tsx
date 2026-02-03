@@ -16,16 +16,20 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
+import { ImageUpload } from "@/components/ui/image-upload";
+
+import { MultiImageUpload } from "@/components/ui/multi-image-upload";
 
 // Schema
 const portfolioSchema = z.object({
     title: z.string().min(2, "Title must be at least 2 characters"),
     description: z.string().optional(),
     category: z.string().min(1, "Category is required"),
-    image_url: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+    image_url: z.string().url("Must be a valid URL").or(z.literal("")),
+    gallery: z.array(z.string()).optional(), // Gallery images
     results: z.string().optional(), // CRLF or comma separated
     tech: z.string().optional(), // Comma separated
-    rating: z.coerce.number().min(0).max(5),
+    // rating removed from form, will default to 5 in submit logic
     publish_date: z.string().min(1, "Date is required"),
     link: z.string().url("Must be a valid URL").optional().or(z.literal("")),
     review: z.string().optional(),
@@ -49,9 +53,10 @@ export function PortfolioForm({ initialData, onSuccess }: PortfolioFormProps) {
             description: "",
             category: "",
             image_url: "",
+            gallery: [],
             results: "",
             tech: "",
-            rating: 5,
+            // rating: 5, // handled in submit
             publish_date: new Date().toISOString().split('T')[0],
             link: "",
             review: "",
@@ -65,9 +70,10 @@ export function PortfolioForm({ initialData, onSuccess }: PortfolioFormProps) {
                 description: initialData.description || "",
                 category: initialData.category || "",
                 image_url: initialData.image_url || "",
+                gallery: initialData.gallery || [],
                 results: initialData.results?.join("\n") || "",
                 tech: initialData.tech?.join(", ") || "",
-                rating: initialData.rating || 5,
+                // rating: initialData.rating || 5,
                 publish_date: initialData.publish_date,
                 link: initialData.link || "",
                 review: initialData.review || "",
@@ -85,6 +91,7 @@ export function PortfolioForm({ initialData, onSuccess }: PortfolioFormProps) {
             ...data,
             tech: techArray,
             results: resultsArray,
+            rating: 5, // Default rating since field is removed
         };
 
         try {
@@ -145,43 +152,53 @@ export function PortfolioForm({ initialData, onSuccess }: PortfolioFormProps) {
                     />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                    <FormField
-                        control={form.control}
-                        name="rating"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Rating (0-5)</FormLabel>
-                                <FormControl>
-                                    <Input type="number" min={0} max={5} step={0.1} {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="link"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Project Link</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="https://..." {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                </div>
+                <FormField
+                    control={form.control}
+                    name="link"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Project Link</FormLabel>
+                            <FormControl>
+                                <Input placeholder="https://..." {...field} />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
                 <FormField
                     control={form.control}
                     name="image_url"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Image URL</FormLabel>
+                            <FormLabel>Main Image</FormLabel>
                             <FormControl>
-                                <Input placeholder="https://..." {...field} />
+                                <ImageUpload
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    folder="portfolio"
+                                    label="Upload Main Image"
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
+                <FormField
+                    control={form.control}
+                    name="gallery"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Gallery Images</FormLabel>
+                            <FormControl>
+                                <MultiImageUpload
+                                    value={field.value || []}
+                                    onChange={field.onChange}
+                                    folder="portfolio/gallery"
+                                    label="Upload Gallery Images"
+                                    maxFiles={8}
+                                />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

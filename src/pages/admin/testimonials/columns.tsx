@@ -10,6 +10,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export type TestimonialColumnActions = {
     onEdit: (testimonial: Testimonial) => void;
@@ -17,6 +18,20 @@ export type TestimonialColumnActions = {
 };
 
 export const columns = ({ onEdit, onDelete }: TestimonialColumnActions): ColumnDef<Testimonial>[] => [
+    {
+        accessorKey: "avatar",
+        header: "Avatar",
+        cell: ({ row }) => {
+            const name = row.getValue("name") as string;
+            const avatar = row.getValue("avatar") as string;
+            return (
+                <Avatar className="h-10 w-10">
+                    <AvatarImage src={avatar} alt={name} className="object-cover" />
+                    <AvatarFallback>{name.substring(0, 2).toUpperCase()}</AvatarFallback>
+                </Avatar>
+            );
+        },
+    },
     {
         accessorKey: "name",
         header: ({ column }) => {

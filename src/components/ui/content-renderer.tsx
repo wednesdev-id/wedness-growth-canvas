@@ -3,7 +3,7 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
-import Image from "@tiptap/extension-image";
+import { CustomImage } from "./extensions/custom-image";
 import { useMemo } from "react";
 
 export interface ContentRendererProps {
@@ -134,7 +134,7 @@ export function ContentRenderer({ content, className, coverImageUrl }: ContentRe
             Link.configure({
                 openOnClick: true,
             }),
-            Image,
+            CustomImage,
         ],
         content: processedContent || "",
         editable: false,

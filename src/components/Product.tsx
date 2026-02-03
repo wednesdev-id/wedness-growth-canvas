@@ -128,7 +128,7 @@ const Product = () => {
                     {/* Footer */}
                     <div className="pt-4 border-t border-border mt-auto">
                       <div className="flex items-center justify-between mb-3">
-                        <p className="font-bold text-primary text-price-dark-accent">{product.price}</p>
+                        {/* Price removed */}
                       </div>
                       <Button
                         onClick={(e) => handleActionClick(e, product)}
@@ -261,6 +261,24 @@ const Product = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Gallery Section */}
+                {selectedProductData.gallery && selectedProductData.gallery.length > 0 && (
+                  <div className="mt-8 pt-8 border-t border-border">
+                    <h4 className="font-semibold text-lg mb-4">Gallery</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {selectedProductData.gallery.map((img, i) => (
+                        <div key={i} className="rounded-lg overflow-hidden border border-border bg-muted relative group">
+                          <img
+                            src={img}
+                            alt={`Gallery ${i + 1}`}
+                            className="w-full h-auto object-cover hover:scale-105 transition-transform duration-500"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Footer: More Products */}
@@ -290,7 +308,7 @@ const Product = () => {
           )}
         </DialogContent>
       </Dialog>
-    </section>
+    </section >
   );
 };
 
