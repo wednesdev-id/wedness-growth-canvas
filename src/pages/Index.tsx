@@ -13,10 +13,15 @@ import Footer from "@/components/Footer";
 import ServicePackages from "@/components/ServicePackages";
 import ServiceAddons from "@/components/ServiceAddons";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import SEO from "@/components/SEO";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Home"
+        description="Wedness Dev - Your Growth Partner in System & Strategy. We help businesses achieve significant growth through technology consulting."
+      />
       <Navigation />
       <Hero />
       <About />

@@ -8,6 +8,7 @@ import { Calendar, User, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useBlogPosts } from "@/hooks/useBlogPosts";
 import { Skeleton } from "@/components/ui/skeleton";
+import SEO from "@/components/SEO";
 
 const Blog = () => {
     const navigate = useNavigate();
@@ -27,6 +28,10 @@ const Blog = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <SEO
+                title="Blog"
+                description="Wawasan, tips, dan berita terbaru seputar teknologi, desain, dan pengembangan bisnis dari Wedness Dev."
+            />
             <Navigation />
 
             <main className="pt-24 pb-16">

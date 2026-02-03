@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { useProducts } from "@/hooks/useProducts";
 import { Skeleton } from "@/components/ui/skeleton";
+import SEO from "@/components/SEO";
 
 const Products = () => {
     const { data: products, isLoading, error } = useProducts();
@@ -33,6 +34,10 @@ const Products = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <SEO
+                title="Products"
+                description="Explore our complete collection of technology solutions designed to accelerate your business growth."
+            />
             <Navigation />
 
             <main className="pt-24 pb-16">

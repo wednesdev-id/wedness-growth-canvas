@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, User, ArrowLeft, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContentRenderer } from "@/components/ui/content-renderer";
+import SEO from "@/components/SEO";
 
 const BlogDetail = () => {
     const { slug } = useParams();
@@ -50,6 +51,14 @@ const BlogDetail = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            {post && (
+                <SEO
+                    title={post.title}
+                    description={post.excerpt || `Read ${post.title} on WednesDev Blog`}
+                    type="article"
+                    image={post.image_url}
+                />
+            )}
             <Navigation />
 
             <main className="pt-24 pb-16">

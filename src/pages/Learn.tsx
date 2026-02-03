@@ -7,6 +7,7 @@ import { PlayCircle, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLearningResources } from "@/hooks/useLearningResources";
 import { Skeleton } from "@/components/ui/skeleton";
+import SEO from "@/components/SEO";
 
 const Learn = () => {
     const { data: resources, isLoading, error } = useLearningResources();
@@ -25,6 +26,10 @@ const Learn = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <SEO
+                title="Learning Hub"
+                description="Tingkatkan skill Anda dengan koleksi materi pembelajaran terkurasi dari para ahli kami."
+            />
             <Navigation />
 
             <main className="pt-24 pb-16">
