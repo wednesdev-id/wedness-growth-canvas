@@ -71,7 +71,16 @@ export function TestimonialForm({ initialData, onSuccess }: TestimonialFormProps
             if (initialData) {
                 await updateTestimonial.mutateAsync({ id: initialData.id, updates: data });
             } else {
-                await createTestimonial.mutateAsync(data);
+                // Ensure data matches the required type for creation
+                const payload: Omit<Testimonial, 'id' | 'created_at'> = {
+                    name: data.name,
+                    role: data.role,
+                    company: data.company,
+                    avatar: data.avatar || "",
+                    rating: data.rating,
+                    testimonial: data.testimonial
+                };
+                await createTestimonial.mutateAsync(payload);
             }
             onSuccess();
         } catch (error) {
