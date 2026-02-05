@@ -452,7 +452,7 @@ export const translations = {
         },
         footer: {
             brandDesc: "Agensi untuk solusi sistem yang berdampak. Kami membantu bisnis berkembang melalui analisis, optimasi, dan sistem yang tepat sasaran.",
-            copyright: "© 2024 WednesDev. All rights reserved.",
+            copyright: "© 2026 WednesDev. All rights reserved.",
             links: {
                 services: "Services",
                 company: "Company",
@@ -467,7 +467,9 @@ export const translations = {
                 approach: "Langkah Kami",
                 impact: "Dampak Nyata",
                 portfolio: "Portfolio",
-                contact: "Hubungi Kami"
+                contact: "Hubungi Kami",
+                privacy: "Kebijakan Privasi",
+                terms: "Syarat dan Ketentuan"
             }
         }
     },
@@ -922,7 +924,7 @@ export const translations = {
         },
         footer: {
             brandDesc: "Agency for impact-driven system solutions. We help businesses grow through analysis, optimization, and targeted systems.",
-            copyright: "© 2024 WednesDev. All rights reserved.",
+            copyright: "© 2026 WednesDev. All rights reserved.",
             links: {
                 services: "Services",
                 company: "Company",
@@ -937,7 +939,9 @@ export const translations = {
                 approach: "Our Steps",
                 impact: "Real Impact",
                 portfolio: "Portfolio",
-                contact: "Contact Us"
+                contact: "Contact Us",
+                privacy: "Privacy Policy",
+                terms: "Terms of Service"
             }
         }
     }

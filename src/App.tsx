@@ -11,6 +11,8 @@ import Blog from "./pages/Blog";
 import BlogDetail from "./pages/BlogDetail";
 import Products from "./pages/Products";
 import Learn from "./pages/Learn";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import DashboardLayout from "./components/layouts/DashboardLayout";
@@ -22,6 +24,7 @@ import LearningList from "./pages/admin/learn/LearningList";
 import PortfolioList from "./pages/admin/portfolio/PortfolioList";
 import TestimonialList from "./pages/admin/testimonials/TestimonialList";
 import ServicePackageList from "./pages/admin/services/ServicePackageList";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +38,7 @@ const App = () => (
             <Toaster />
             <Sonner />
             <BrowserRouter>
+              <GoogleAnalytics />
               <Routes>
                 {/* Public Routes */}
                 <Route path="/" element={<Index />} />
@@ -42,6 +46,8 @@ const App = () => (
                 <Route path="/blog/:slug" element={<BlogDetail />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/learn" element={<Learn />} />
+                <Route path="/privacy" element={<PrivacyPolicy />} />
+                <Route path="/terms" element={<TermsOfService />} />
 
                 {/* Admin Routes */}
                 <Route path="/login" element={<Login />} />

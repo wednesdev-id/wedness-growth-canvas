@@ -235,60 +235,93 @@ export function BlogForm({ initialData, onSuccess }: BlogFormProps) {
                 {/* Cover Image Upload */}
                 <div className="space-y-2">
                     <FormLabel>Cover Image</FormLabel>
-                    <div className="flex items-center gap-4">
-                        <input
-                            type="file"
-                            ref={coverInputRef}
-                            className="hidden"
-                            accept="image/*"
-                            onChange={async (e: ChangeEvent<HTMLInputElement>) => {
-                                const file = e.target.files?.[0];
-                                if (!file) return;
+                    <div className="flex flex-col gap-4">
+                        <div className="flex items-center gap-4">
+                            <input
+                                type="file"
+                                ref={coverInputRef}
+                                className="hidden"
+                                accept="image/*"
+                                onChange={async (e: ChangeEvent<HTMLInputElement>) => {
+                                    const file = e.target.files?.[0];
+                                    if (!file) return;
 
-                                try {
-                                    setIsUploadingCover(true);
-                                    const result = await StorageService.upload(file, 'cover-images');
-                                    setCoverImageUrl(result.url);
-                                } catch (error) {
-                                    console.error("Cover upload failed:", error);
-                                } finally {
-                                    setIsUploadingCover(false);
-                                    if (coverInputRef.current) coverInputRef.current.value = "";
-                                }
-                            }}
-                        />
-                        <Button
-                            type="button"
-                            variant="outline"
-                            onClick={() => coverInputRef.current?.click()}
-                            disabled={isUploadingCover}
-                        >
-                            {isUploadingCover ? (
-                                <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                                    Uploading...
-                                </>
-                            ) : (
-                                "Upload Cover Image"
-                            )}
-                        </Button>
-                        {coverImageUrl && (
+                                    try {
+                                        setIsUploadingCover(true);
+                                        const result = await StorageService.upload(file, 'cover-images');
+                                        setCoverImageUrl(result.url);
+                                    } catch (error) {
+                                        console.error("Cover upload failed:", error);
+                                    } finally {
+                                        setIsUploadingCover(false);
+                                        if (coverInputRef.current) coverInputRef.current.value = "";
+                                    }
+                                }}
+                            />
                             <Button
                                 type="button"
-                                variant="ghost"
-                                size="sm"
-                                onClick={() => setCoverImageUrl('')}
+                                variant="outline"
+                                onClick={() => coverInputRef.current?.click()}
+                                disabled={isUploadingCover}
                             >
-                                Remove
+                                {isUploadingCover ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Uploading...
+                                    </>
+                                ) : (
+                                    "Upload File"
+                                )}
                             </Button>
-                        )}
-                    </div>
-                    {coverImageUrl && (
-                        <div className="mt-2 relative rounded-lg overflow-hidden border border-border aspect-video max-w-xs">
-                            <img src={coverImageUrl} alt="Cover preview" className="w-full h-full object-cover" />
+
+                            <div className="flex-1">
+                                <Input
+                                    placeholder="Or paste image URL / image here..."
+                                    value={coverImageUrl}
+                                    onChange={(e) => setCoverImageUrl(e.target.value)}
+                                    disabled={isUploadingCover}
+                                    onPaste={async (e) => {
+                                        const items = e.clipboardData.items;
+                                        for (let i = 0; i < items.length; i++) {
+                                            if (items[i].type.indexOf("image") !== -1) {
+                                                e.preventDefault();
+                                                const file = items[i].getAsFile();
+                                                if (file) {
+                                                    try {
+                                                        setIsUploadingCover(true);
+                                                        const result = await StorageService.upload(file, 'cover-images');
+                                                        setCoverImageUrl(result.url);
+                                                    } catch (error) {
+                                                        console.error("Paste upload failed:", error);
+                                                    } finally {
+                                                        setIsUploadingCover(false);
+                                                    }
+                                                }
+                                                return;
+                                            }
+                                        }
+                                    }}
+                                />
+                            </div>
+
+                            {coverImageUrl && (
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setCoverImageUrl('')}
+                                >
+                                    Remove
+                                </Button>
+                            )}
                         </div>
-                    )}
-                    <FormDescription>This image appears as the blog post thumbnail.</FormDescription>
+                        {coverImageUrl && (
+                            <div className="mt-2 relative rounded-lg overflow-hidden border border-border aspect-video max-w-xs">
+                                <img src={coverImageUrl} alt="Cover preview" className="w-full h-full object-cover" />
+                            </div>
+                        )}
+                        <FormDescription>This image appears as the blog post thumbnail.</FormDescription>
+                    </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">

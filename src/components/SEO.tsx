@@ -14,7 +14,7 @@ export default function SEO({
     description = "Wedness Dev is a technology agency specializing in risk analysis, problem mitigation, and system optimization to help businesses achieve significant growth.",
     name = "Wedness Dev",
     type = "website",
-    image = "https://lovable.dev/opengraph-image-p98pqg.png",
+    image = "https://wednesdev.id/LOGO%20WEDNESDEV-01.png",
     url
 }: SEOProps) {
     const siteTitle = title ? `${title} | ${name}` : name;

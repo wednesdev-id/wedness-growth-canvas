@@ -14,6 +14,7 @@ import ServicePackages from "@/components/ServicePackages";
 import ServiceAddons from "@/components/ServiceAddons";
 import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import SEO from "@/components/SEO";
+import LatestBlogs from "@/components/LatestBlogs";
 
 const Index = () => {
   return (
@@ -26,6 +27,7 @@ const Index = () => {
       <Hero />
       <About />
       <Services />
+      <LatestBlogs />
       <ServicePackages />
       <ServiceAddons />
       <Approach />

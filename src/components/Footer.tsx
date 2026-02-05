@@ -1,4 +1,5 @@
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -89,12 +90,12 @@ const Footer = () => {
             {t('footer.copyright')}
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-accent transition-colors">
-              Terms of Service
-            </a>
+            <Link to="/privacy" className="text-gray-400 hover:text-accent transition-colors">
+              {t('footer.items.privacy')}
+            </Link>
+            <Link to="/terms" className="text-gray-400 hover:text-accent transition-colors">
+              {t('footer.items.terms')}
+            </Link>
           </div>
         </div>
       </div>
