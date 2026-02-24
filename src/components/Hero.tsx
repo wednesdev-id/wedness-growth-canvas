@@ -48,11 +48,8 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              {t('hero.title').split("System Solutions")[0]}
-              <span className="text-gradient bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
-                {t('hero.title').match(/System Solutions|Solusi Sistem/)?.[0] || "System Solutions"}
-              </span>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-accent to-blue-400 bg-clip-text text-transparent">
+              {t('hero.title')}
             </h1>
           </motion.div>
 
